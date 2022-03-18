@@ -8,8 +8,7 @@
 import numpy as np
 import scipy.io as scio
 from sklearn import preprocessing
-from sklearn.datasets import load_digits # 导入数据
-
+from sklearn.datasets import load_digits  # 导入数据
 
 
 # Linear Discriminant Analysis train function
@@ -33,10 +32,10 @@ def LDA_train(x0, x1):
 
     # Calculate the w.
     #### Your Code ####
-    w = Sw.dot(m0 - m1)
+    w = Sw.dot(mu0 - mu1)
     #### Your Code ####
 
-    w0 = w.dot((mu0+mu1)/2)
+    w0 = w.dot((mu0 + mu1) / 2)
     return w, w0
 
 
@@ -61,22 +60,22 @@ digits = load_digits()
 data = digits.data
 target = digits.target
 
-#choose train sample:0--999
-train_x=data[0:1000]
-train_y=target[0:1000]
+# choose train sample:0--999
+train_x = data[0:1000]
+train_y = target[0:1000]
 
-#choose test sample 1000--end
-test_x=data[1000:]
-test_y=target[1000:]
+# choose test sample 1000--end
+test_x = data[1000:]
+test_y = target[1000:]
 
 # We choose label 2 and 4 as the class0 and class1.
-label0 = 8
-label1 = 9
-train_x0 = train_x[train_y==label0, :]
-train_x1 = train_x[train_y==label1, :]
+label0 = 0
+label1 = 1
+train_x0 = train_x[train_y == label0, :]
+train_x1 = train_x[train_y == label1, :]
 
-test_x0 = test_x[test_y==label0, :]
-test_x1 = test_x[test_y==label1, :]
+test_x0 = test_x[test_y == label0, :]
+test_x1 = test_x[test_y == label1, :]
 
 # Data normalize
 scaler = preprocessing.StandardScaler().fit(np.concatenate((train_x0, train_x1), axis=0))
@@ -84,7 +83,6 @@ train_x0 = scaler.transform(train_x0)
 train_x1 = scaler.transform(train_x1)
 test_x0 = scaler.transform(test_x0)
 test_x1 = scaler.transform(test_x1)
-
 
 # Train
 w, w0 = LDA_train(train_x0, train_x1)
@@ -96,4 +94,4 @@ test_y1 = LDA_test(test_x1, w, w0)
 # Calculate the correct rate of test data
 correct = np.sum(test_y0) + np.sum(1 - test_y1)
 correct_rate = correct / (test_x0.shape[0] + test_x1.shape[0])
-print('Correct rate is: %.2f%%' % (correct_rate*100))
+print('Correct rate is: %.2f%%' % (correct_rate * 100))
