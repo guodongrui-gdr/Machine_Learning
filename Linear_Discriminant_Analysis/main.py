@@ -29,8 +29,8 @@ def get_data():
     test_x = data[1000:]
     test_y = target[1000:]
 # 选取两个数字进行分类
-    label0 = 1
-    label1 = 7
+    label0 = 0
+    label1 = 9
     train_x0 = train_x[train_y == label0, :]
     train_x1 = train_x[train_y == label1, :]
 
@@ -43,7 +43,7 @@ def get_data():
     train_x1 = scaler.transform(train_x1)
     test_x0 = scaler.transform(test_x0)
     test_x1 = scaler.transform(test_x1)
-    return train_x0,train_x1
+    return train_x0,train_x1,test_x0,test_x1
 
 train_x0, train_x1,test_x0,test_x1=get_data()
 # 训练模型
