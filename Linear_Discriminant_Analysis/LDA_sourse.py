@@ -10,9 +10,6 @@ import scipy.io as scio
 from sklearn import preprocessing
 from sklearn.datasets import load_digits  # 导入数据
 
-import sys
-np.set_printoptions(threshold=np.inf)
-
 # Linear Discriminant Analysis train function
 # Purpose:
 #   Use train data x0 and x1 to calculate the weights, threshold of LDA model.
