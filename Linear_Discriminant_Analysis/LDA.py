@@ -36,8 +36,7 @@ def run(label0, label1):
         test_x1 = x1[int(i * len(x1) / 10):int(i * len(x1) / 10 + len(x1) / 10)]
         train_x1 = np.concatenate((x1[0:int(i * len(x1) / 10)], x1[int(i * len(x1) / 10 + len(x1) / 10):]), axis=0)
         # 数据标准化
-        scaler = preprocessing.StandardScaler().fit(np.concatenate((train_x0, train_x1),
-                                                                   axis=0))  # preprocessing.StandardScaler().fit()函数用于计算数据的均值和方差,np.concatenate()函数用于将两组数据合并
+        scaler = preprocessing.StandardScaler().fit(np.concatenate((train_x0, train_x1), axis=0))  # preprocessing.StandardScaler().fit()函数用于计算数据的均值和方差,np.concatenate()函数用于将两组数据合并
         train_x0 = scaler.transform(train_x0)  # transform()函数用于将原数据替换为均值和方差
         train_x1 = scaler.transform(train_x1)
         test_x0 = scaler.transform(test_x0)
