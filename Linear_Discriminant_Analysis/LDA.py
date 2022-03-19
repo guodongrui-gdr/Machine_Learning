@@ -44,11 +44,9 @@ def run(label0, label1):
         test_x1 = scaler.transform(test_x1)
         # 训练模型
         w, w0 = train(train_x0, train_x1)
-
         # 测试模型
         test_y0 = test(test_x0, w, w0)
         test_y1 = test(test_x1, w, w0)
-
         # 计算准确率
         correct = np.sum(test_y0) + np.sum(1 - test_y1)
         correct_rate += correct / (test_x0.shape[0] + test_x1.shape[0])
