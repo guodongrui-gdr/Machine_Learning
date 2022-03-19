@@ -10,6 +10,8 @@ import scipy.io as scio
 from sklearn import preprocessing
 from sklearn.datasets import load_digits  # 导入数据
 
+import sys
+np.set_printoptions(threshold=np.inf)
 
 # Linear Discriminant Analysis train function
 # Purpose:
@@ -69,8 +71,8 @@ test_x = data[1000:]
 test_y = target[1000:]
 
 # We choose label 2 and 4 as the class0 and class1.
-label0 = 0
-label1 = 1
+label0 = 2
+label1 = 3
 train_x0 = train_x[train_y == label0, :]
 train_x1 = train_x[train_y == label1, :]
 
@@ -86,11 +88,11 @@ test_x1 = scaler.transform(test_x1)
 
 # Train
 w, w0 = LDA_train(train_x0, train_x1)
-
+print(np.dot(test_x1,w))
 # Test
 test_y0 = LDA_test(test_x0, w, w0)
 test_y1 = LDA_test(test_x1, w, w0)
-
+print(np.sum(test_y1))
 # Calculate the correct rate of test data
 correct = np.sum(test_y0) + np.sum(1 - test_y1)
 correct_rate = correct / (test_x0.shape[0] + test_x1.shape[0])
