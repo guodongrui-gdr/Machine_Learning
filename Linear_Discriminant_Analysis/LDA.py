@@ -58,4 +58,4 @@ for i in range(10):
     for j in range(i + 1, 10):
         correct_rate += run(i, j)
 print('Correct rate is: %.2f%%' % (correct_rate * 10 / 45))
-print(time.time() - a)
+print('cost time is: %.2f' % (time.time() - a))
