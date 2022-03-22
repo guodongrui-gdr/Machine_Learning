@@ -9,25 +9,32 @@ def MD5(str1):
 
 
 def run1(n):
-    count = 0
-    a = time.time()
-    time_count = 1
-    md5 = MD5(n)
-    for i in range(5 * 10 ** 8):
-        count += 1
-        md5 = MD5(md5)
-        if n == md5:
-            print(md5)
-            break
-        if count % 10000 == 0:
-            print("{:.4f}items/s".format(10000 * time_count / (time.time() - a)))
-            time_count += 1
-    print(md5)
+    with open('md5.txt','w') as f:
+        count = 0
+        a = time.time()
+        time_count = 1
+        md5 = MD5(n)
+        f.write(md5+'\n')
+        for i in range(sum):
+            count += 1
+            md5 = MD5(md5)
 
-
+            if n == md5:
+                print(md5)
+                break
+            if count % 100000 == 0:
+                print("progress:{:.2f}%,{:.4f}items/s".format(100*count/sum,100000 * time_count / (time.time() - a)))
+                f.write(md5 + '\n')
+                time_count += 1
+        print(md5)
+        f.close()
+global sum
+sum=12*10**9
 a = time.time()
-run1('1c84960824e1d1392dc9a3a87d284bee')
-print("run time is:{:.2f}s".format(time.time() - a))
+run1('f57f2ea3634a0c4673f952d92b23f014')
+time=time.time()-a
+print("run time is:{:.2f}s".format(time))
+print("average speed is:{:.2f}items/s".format(sum/time))
 '''
 
 
