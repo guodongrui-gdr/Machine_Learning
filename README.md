@@ -3,6 +3,4 @@
 
 机器学习
 
-第一次作业
-
-Linear Discriminant Analysis
+第一次作业:Linear Discriminant Analysis
