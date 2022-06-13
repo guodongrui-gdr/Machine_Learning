@@ -24,7 +24,8 @@ def LDA_train(x0, x1):
     mu1 = x1.mean(0)
 
     # Calculate the Sw.
-    #### Your Code ####
+    #### Your Co
+    # de ####
     Sw = Sw = np.dot((x0 - mu0).T, (x0 - mu0)) + np.dot((x1 - mu1).T, (x1 - mu1))
     #### Your Code ####
     Sw_ = np.linalg.pinv(Sw)
@@ -35,9 +36,11 @@ def LDA_train(x0, x1):
     #### Your Code ####
 
     w0 = w.dot((mu0 + mu1) / 2)
+    print(w0)
     return w, w0
 
-
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
 # Linear Discriminant Analysis test function
 # Purpose:
 #   Use the LDA model to classify the test data.
@@ -50,6 +53,9 @@ def LDA_train(x0, x1):
 #   (True: class0, False: class1)
 def LDA_test(x, w, w0):
     y = x.dot(w)
+    print(y)
+    sigmoid(y)
+    print(y)
     flag = y > w0
     return flag
 
@@ -85,11 +91,11 @@ test_x1 = scaler.transform(test_x1)
 
 # Train
 w, w0 = LDA_train(train_x0, train_x1)
-print(np.dot(test_x1,w))
+
 # Test
 test_y0 = LDA_test(test_x0, w, w0)
 test_y1 = LDA_test(test_x1, w, w0)
-print(np.sum(test_y1))
+
 # Calculate the correct rate of test data
 correct = np.sum(test_y0) + np.sum(1 - test_y1)
 correct_rate = correct / (test_x0.shape[0] + test_x1.shape[0])
